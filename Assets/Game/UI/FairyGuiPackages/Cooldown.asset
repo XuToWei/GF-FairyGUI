@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26510e0c1f927ba4d91864b8a05ffdf5, type: 3}
+  m_Name: Cooldown
+  m_EditorClassIdentifier: 
+  m_PackageName: Cooldown
+  m_DescAsset: {fileID: 4900000, guid: 5f3d8f10032db02438769fc94060af2c, type: 3}
+  m_AssetObjects:
+  - {fileID: 2800000, guid: 4a79f25eba9208e44a945a2ca8bd6d15, type: 3}
