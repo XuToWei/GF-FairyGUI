@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: TurnCard
   m_EditorClassIdentifier: 
   m_PackageName: TurnCard
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: cf43b881dc32be34bab6d3fe7e34e378, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 2aec6ee4202bc2f4898eaf96f179fb12, type: 3}

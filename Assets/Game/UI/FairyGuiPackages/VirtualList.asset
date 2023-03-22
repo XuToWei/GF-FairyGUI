@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: VirtualList
   m_EditorClassIdentifier: 
   m_PackageName: VirtualList
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 3f47f5d4e77d74b4ab28caa99d0011ea, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: fdef225d0e693964082ff85e74bf0aff, type: 3}

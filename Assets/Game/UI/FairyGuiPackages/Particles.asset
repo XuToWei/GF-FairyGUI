@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Particles
   m_EditorClassIdentifier: 
   m_PackageName: Particles
+  m_ComponentNames:
+  - CoolComponent
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 90ef9033f4a98c941964ee40b9285788, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: ba23fd49e5b42f44faa87ac9ba8efad8, type: 3}

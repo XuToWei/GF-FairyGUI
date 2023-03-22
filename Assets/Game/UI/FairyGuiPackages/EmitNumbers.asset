@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: EmitNumbers
   m_EditorClassIdentifier: 
   m_PackageName: EmitNumbers
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: b2053f33517aa3d40ab369e51b404b32, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: cced2937b17435a4ab34378d081eab92, type: 3}

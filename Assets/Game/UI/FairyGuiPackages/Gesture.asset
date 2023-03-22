@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Gesture
   m_EditorClassIdentifier: 
   m_PackageName: Gesture
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 98b23fb668accc2429e836b1880a5090, type: 3}
   m_AssetObjects: []

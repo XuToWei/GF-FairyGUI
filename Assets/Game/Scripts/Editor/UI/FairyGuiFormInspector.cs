@@ -12,6 +12,7 @@ namespace Game.Editor
         //private SerializedProperty m_LuaClassName;
 
         private int m_FairyGuiPackageAssetIndex;
+        private int m_FairyGuiComponentNameIndex;
 
         private List<string> m_FairyGuiPackageAssetNames;
 
@@ -24,20 +25,31 @@ namespace Game.Editor
             
             EditorGUI.BeginDisabledGroup(EditorApplication.isPlayingOrWillChangePlaymode);
             {
-                if (EditorApplication.isPlaying && IsPrefabInHierarchy(t.gameObject))
+                int selectedIndex = EditorGUILayout.Popup("FairyGui Package Asset", m_FairyGuiPackageAssetIndex, m_FairyGuiPackageAssetNames.ToArray());
+                if (selectedIndex != m_FairyGuiPackageAssetIndex)
                 {
-                    EditorGUILayout.Popup("FairyGui Package Asset", m_FairyGuiPackageAssetIndex, m_FairyGuiPackageAssetNames.ToArray());
+                    m_FairyGuiPackageAssetIndex = selectedIndex;
+                    m_FairyGuiPackageAsset.objectReferenceValue = AssetDatabase.LoadAssetAtPath<FairyGuiPackageAsset>(FairyGuiEditor.FairyGuiPackagesPath + m_FairyGuiPackageAssetNames[selectedIndex]);
                 }
-                else
+
+                if (m_FairyGuiPackageAssetIndex >= 0)
                 {
-                    int selectedIndex = EditorGUILayout.Popup("FairyGui Package Asset", m_FairyGuiPackageAssetIndex, m_FairyGuiPackageAssetNames.ToArray());
-                    if (selectedIndex != m_FairyGuiPackageAssetIndex)
+                    FairyGuiPackageAsset packageAsset = (FairyGuiPackageAsset)m_FairyGuiPackageAsset.objectReferenceValue;
+                    if (packageAsset.ComponentNames != null && packageAsset.ComponentNames.Length > 0)
                     {
-                        m_FairyGuiPackageAssetIndex = selectedIndex;
-                        m_FairyGuiPackageAsset.objectReferenceValue = AssetDatabase.LoadAssetAtPath<FairyGuiPackageAsset>(FairyGuiEditor.FairyGuiPackagesPath + m_FairyGuiPackageAssetNames[selectedIndex]);
+                        selectedIndex = EditorGUILayout.Popup("Component Name", m_FairyGuiComponentNameIndex, packageAsset.ComponentNames);
+                        if (selectedIndex != m_FairyGuiComponentNameIndex)
+                        {
+                            m_FairyGuiComponentNameIndex = selectedIndex;
+                            m_ComponentName.stringValue = packageAsset.ComponentNames[m_FairyGuiComponentNameIndex];
+                        }
+                    }
+                    else
+                    {
+                        EditorGUILayout.LabelField("Component Name not exist! Please Check!");
                     }
                 }
-                EditorGUILayout.PropertyField(m_ComponentName);
+                
                 //EditorGUILayout.PropertyField(m_LuaClassName);
             }
             EditorGUI.EndDisabledGroup();

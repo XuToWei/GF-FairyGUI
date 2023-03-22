@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using FairyGUI;
 using GameFramework;
@@ -13,19 +11,22 @@ namespace Game
         private static readonly Dictionary<string, int> PackageUsingDic = new Dictionary<string, int>();
 
         [SerializeField] private string m_PackageName;
+        [SerializeField] private string[] m_ComponentNames;
         [SerializeField] private TextAsset m_DescAsset;
         [SerializeField] private Object[] m_AssetObjects;
 
         public string PackageName => m_PackageName;
+        public string[] ComponentNames => m_ComponentNames;
 
         public GObject CreateObject(string componentName)
         {
             return UIPackage.CreateObject(m_PackageName, componentName);
         }
 
-        public void Set(string packageName, TextAsset textAsset, Object[] assetObjects)
+        public void Set(string packageName,string[] componentNames, TextAsset textAsset, Object[] assetObjects)
         {
             m_PackageName = packageName;
+            m_ComponentNames = componentNames;
             m_DescAsset = textAsset;
             m_AssetObjects = assetObjects;
         }

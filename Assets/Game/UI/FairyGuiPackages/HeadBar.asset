@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: HeadBar
   m_EditorClassIdentifier: 
   m_PackageName: HeadBar
+  m_ComponentNames:
+  - HeadBar
+  - Main
   m_DescAsset: {fileID: 4900000, guid: ef40c026e31e7db4b88e8eb7ec00e54e, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 37db7ddb83fdc0847a958774ef8d02a9, type: 3}

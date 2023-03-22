@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: RenderTexture
   m_EditorClassIdentifier: 
   m_PackageName: RenderTexture
+  m_ComponentNames:
+  - Main
+  - TestWin
   m_DescAsset: {fileID: 4900000, guid: 6a57c3ae9195d134eb59b8851df1fddc, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 73c44b11bcf2ecb48a6e9855b9b20392, type: 3}

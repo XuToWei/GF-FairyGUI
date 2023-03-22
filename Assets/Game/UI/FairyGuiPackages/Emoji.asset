@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: Emoji
   m_EditorClassIdentifier: 
   m_PackageName: Emoji
+  m_ComponentNames:
+  - chatLeft
+  - chatRight
+  - EmojiSelectUI
+  - EmojiSelectUI_ios
+  - Main
+  - ScrollBar_VT
   m_DescAsset: {fileID: 4900000, guid: abe0fbca7beae11409251817a8f0b8e1, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: cbac17e6aad1c0049849ca5fb5b64054, type: 3}

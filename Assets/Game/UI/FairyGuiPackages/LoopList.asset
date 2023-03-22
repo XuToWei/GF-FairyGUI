@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: LoopList
   m_EditorClassIdentifier: 
   m_PackageName: LoopList
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 3bed941e57b11a54f92ea37994ea34a2, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: d83a015007dc20d42a78e31acffea4bc, type: 3}

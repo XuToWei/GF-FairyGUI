@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using FairyGUI;
+using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -10,8 +12,8 @@ namespace Game.Editor
 {
     public class FairyGuiEditor : AssetPostprocessor
     {
-        private static readonly string FairyGUIAssetsPath = "Assets/Game/UI/FairyGuis/";
-        public static readonly string FairyGuiPackagesPath = "Assets/Game/UI/FairyGuiPackages/";
+        public const string FairyGuiAssetsPath = "Assets/Game/UI/FairyGuis/";
+        public const string FairyGuiPackagesPath = "Assets/Game/UI/FairyGuiPackages/";
 
         private static Dictionary<string, TextAsset> m_FuiDescAssetDict = new Dictionary<string, TextAsset>();
         private static Dictionary<string, List<Object>> m_FuiAssetsDict = new Dictionary<string, List<Object>>();
@@ -102,6 +104,10 @@ namespace Game.Editor
             for (int i = 0; i < importedAssets.Length; i++)
             {
                 string importName = importedAssets[i];
+                if (!importName.Contains("_"))
+                {
+                    continue;
+                }
 
                 int charIndex = importName.IndexOf("_");
                 string prePartName = importName.Substring(0, charIndex);
@@ -137,12 +143,12 @@ namespace Game.Editor
                 return;
             }
 
-
             if (!Directory.Exists(FairyGuiPackagesPath))
             {
                 Directory.CreateDirectory(FairyGuiPackagesPath);
             }
 
+            List<string> componentNames = new List<string>();
             foreach (var key in m_FuiDescAssetDict.Keys)
             {
                 string name = key;
@@ -158,13 +164,25 @@ namespace Game.Editor
                 {
                     asset = AssetDatabase.LoadAssetAtPath<FairyGuiPackageAsset>(packageAssetPath);
                 }
+                
+                UIPackage pkg = UIPackage.AddPackage($"{FairyGuiAssetsPath}{name}");
+                componentNames.Clear();
+                
+                foreach (PackageItem pi in pkg.GetItems())
+                {
+                    if (pi.type == PackageItemType.Component && pi.exported)
+                    {
+                        componentNames.Add(pi.name);
+                    }
+                }
+                
                 if (m_FuiAssetsDict.ContainsKey(name))
                 {
-                    asset.Set(name, m_FuiDescAssetDict[name], m_FuiAssetsDict[name].ToArray());
+                    asset.Set(name, componentNames.ToArray(), m_FuiDescAssetDict[name], m_FuiAssetsDict[name].ToArray());
                 }
                 else
                 {
-                    asset.Set(name, m_FuiDescAssetDict[name], null);
+                    asset.Set(name, componentNames.ToArray(), m_FuiDescAssetDict[name], null);
                 }
                 EditorUtility.SetDirty(asset);
             }
@@ -177,7 +195,7 @@ namespace Game.Editor
             for (int i = 0; i < dirs.Length; i++)
             {
                 string str = dirs[i];
-                if (str.StartsWith(FairyGUIAssetsPath))
+                if (str.StartsWith(FairyGuiAssetsPath))
                 {
                     return true;
                 }

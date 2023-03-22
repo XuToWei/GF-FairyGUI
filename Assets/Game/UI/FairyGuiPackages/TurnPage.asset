@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: TurnPage
   m_EditorClassIdentifier: 
   m_PackageName: TurnPage
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 3467d81c37d904e4cae8479a2eed0625, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 14495e2b94dce7d4091db08ddaa08611, type: 3}

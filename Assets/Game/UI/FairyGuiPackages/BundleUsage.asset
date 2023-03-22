@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: BundleUsage
   m_EditorClassIdentifier: 
   m_PackageName: BundleUsage
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: d79ec713609e1ae41a9c54d1cbe3ed41, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: a6f5a8d91d8a52d4b9819d1b92010198, type: 3}

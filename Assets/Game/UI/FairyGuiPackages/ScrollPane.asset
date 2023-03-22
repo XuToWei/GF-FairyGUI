@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ScrollPane
   m_EditorClassIdentifier: 
   m_PackageName: ScrollPane
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 6781817524b1ab24f9f0ea298d62d7e0, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 4f25a0afaf45be34aabe2154c58e76e5, type: 3}

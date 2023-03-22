@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4959349268167250312}
   - component: {fileID: -7286822712284582611}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TestUIForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73ca951e1487054f92a70f867e560b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FairyGuiPackageAsset: {fileID: 11400000, guid: d37a38c85ae7e7f42a20d528bb2ef1dc, type: 2}
-  m_ComponentName: Main
+  m_FairyGuiPackageAsset: {fileID: 11400000, guid: 00b0e772dad5da94b903a08866013d2c, type: 2}
+  m_ComponentName: Demo_Button

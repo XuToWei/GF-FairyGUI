@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Joystick
   m_EditorClassIdentifier: 
   m_PackageName: Joystick
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: b113a624912a13641873cd26c3899fdc, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: d699019b482ed464b999c84c7cbf48b2, type: 3}

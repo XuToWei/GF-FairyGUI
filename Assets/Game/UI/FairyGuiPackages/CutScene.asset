@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: CutScene
   m_EditorClassIdentifier: 
   m_PackageName: CutScene
+  m_ComponentNames:
+  - CutScene
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 6bd732ed2102b634281a67e338ffc50a, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 9b2df5b905768e4469f0091682cbefb1, type: 3}

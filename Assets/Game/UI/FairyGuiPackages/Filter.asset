@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Filter
   m_EditorClassIdentifier: 
   m_PackageName: Filter
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 06eec7a597905a14399aacd331b0c7f2, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 61919131654261146af83141df177810, type: 3}

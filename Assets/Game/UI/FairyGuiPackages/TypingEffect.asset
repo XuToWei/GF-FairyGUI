@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: TypingEffect
   m_EditorClassIdentifier: 
   m_PackageName: TypingEffect
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 790ac66b4ce3830419c3f4a79413fb5a, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: db1d717f594f98b4aa8b1c264d08dfbd, type: 3}

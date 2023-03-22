@@ -13,6 +13,35 @@ MonoBehaviour:
   m_Name: Basics
   m_EditorClassIdentifier: 
   m_PackageName: Basics
+  m_ComponentNames:
+  - CircleProgress
+  - Component12
+  - Demo_Button
+  - Demo_Clip&Scroll
+  - Demo_ComboBox
+  - Demo_Component
+  - Demo_Controller
+  - Demo_Depth
+  - Demo_Drag&Drop
+  - Demo_Graph
+  - Demo_Grid
+  - Demo_Image
+  - Demo_Label
+  - Demo_List
+  - Demo_Loader
+  - Demo_MovieClip
+  - Demo_Popup
+  - Demo_ProgressBar
+  - Demo_Relation
+  - Demo_Slider
+  - Demo_Text
+  - Demo_Window
+  - Main
+  - PopupMenu
+  - ScrollBar_HZ
+  - ScrollBar_VT
+  - WindowA
+  - WindowB
   m_DescAsset: {fileID: 4900000, guid: 921e366b880e18a4e85b07801af77004, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 372a5fc6a7220414a86e7d80310532f6, type: 3}

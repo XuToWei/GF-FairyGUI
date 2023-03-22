@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: TreeView
   m_EditorClassIdentifier: 
   m_PackageName: TreeView
+  m_ComponentNames:
+  - Main
+  - TreeExpandButton
+  - TreeItem
   m_DescAsset: {fileID: 4900000, guid: 7d562a0c07dd2384a8f8e51fca15967b, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 29eb8094b8149594b830b4624c262bd1, type: 3}

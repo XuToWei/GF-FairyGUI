@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PullToRefresh
   m_EditorClassIdentifier: 
   m_PackageName: PullToRefresh
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: f20ac4697223ffa4a96872e7760f03ad, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 6449d311660ac294a8d9e6023f1367a9, type: 3}

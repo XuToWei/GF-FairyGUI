@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Bag
   m_EditorClassIdentifier: 
   m_PackageName: Bag
+  m_ComponentNames:
+  - BagWin
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 74726a7e32dcd74489f269a9c3d49f77, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: ef165e6f77154cc4c941a8f23d8cab22, type: 3}

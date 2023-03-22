@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Perspective
   m_EditorClassIdentifier: 
   m_PackageName: Perspective
+  m_ComponentNames:
+  - Main
+  - Panel
+  - Panel2
   m_DescAsset: {fileID: 4900000, guid: e05ce9aa321e1c545a4e0b6df17bf6ba, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 8e5141a4962a5cc41abf73648b00dff6, type: 3}

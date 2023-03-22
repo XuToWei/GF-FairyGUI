@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Curve
   m_EditorClassIdentifier: 
   m_PackageName: Curve
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: c62fc77f7708ca7489e6a08c4fa6fa8f, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: 8d46e2eb260a6434b8c08a0fd9580fff, type: 3}

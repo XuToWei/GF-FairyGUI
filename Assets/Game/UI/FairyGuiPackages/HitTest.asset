@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: HitTest
   m_EditorClassIdentifier: 
   m_PackageName: HitTest
+  m_ComponentNames:
+  - Main
   m_DescAsset: {fileID: 4900000, guid: 0cc50d1c1bfbe7143a9eb1df53ab635a, type: 3}
   m_AssetObjects:
   - {fileID: 2800000, guid: cdba5bd282f1c4b4186bfb662e76cc9c, type: 3}
