@@ -184,6 +184,8 @@ namespace Game.Editor
                 {
                     asset.Set(name, componentNames.ToArray(), m_FuiDescAssetDict[name], null);
                 }
+                
+                UIPackage.RemovePackage(pkg.name);
                 EditorUtility.SetDirty(asset);
             }
             AssetDatabase.SaveAssets();
