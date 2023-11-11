@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityGameFramework.Editor;
 
@@ -7,8 +8,8 @@ namespace Game.Editor
     [CustomEditor(typeof(FairyGuiForm), true)]
     public class FairyGuiFormInspector : GameFrameworkInspector
     {
-        private SerializedProperty m_FairyGuiPackageAsset;
-        private SerializedProperty m_ComponentName;
+        private SerializedProperty m_FairyGuiPackageAssetSerializedProperty;
+        private SerializedProperty m_ComponentNameSerializedProperty;
         //private SerializedProperty m_LuaClassName;
 
         private int m_FairyGuiPackageAssetIndex;
@@ -20,36 +21,35 @@ namespace Game.Editor
         {
             base.OnInspectorGUI();
             serializedObject.Update();
-            RefreshFairyGuiPackageAsset();
-            FairyGuiForm t = (FairyGuiForm)target;
-            
             EditorGUI.BeginDisabledGroup(EditorApplication.isPlayingOrWillChangePlaymode);
             {
-                int selectedIndex = EditorGUILayout.Popup("FairyGui Package Asset", m_FairyGuiPackageAssetIndex, m_FairyGuiPackageAssetNames.ToArray());
-                if (selectedIndex != m_FairyGuiPackageAssetIndex)
+                int index = EditorGUILayout.Popup("FairyGui Package Asset", m_FairyGuiPackageAssetIndex, m_FairyGuiPackageAssetNames.ToArray());
+                if (index != m_FairyGuiPackageAssetIndex)
                 {
-                    m_FairyGuiPackageAssetIndex = selectedIndex;
-                    m_FairyGuiPackageAsset.objectReferenceValue = AssetDatabase.LoadAssetAtPath<FairyGuiPackageAsset>(FairyGuiEditor.FairyGuiPackagesPath + m_FairyGuiPackageAssetNames[selectedIndex]);
+                    m_FairyGuiComponentNameIndex = -1;
+                    m_ComponentNameSerializedProperty.stringValue = string.Empty;
                 }
-
+                m_FairyGuiPackageAssetIndex = index;
                 if (m_FairyGuiPackageAssetIndex >= 0)
                 {
-                    FairyGuiPackageAsset packageAsset = (FairyGuiPackageAsset)m_FairyGuiPackageAsset.objectReferenceValue;
-                    if (packageAsset.ComponentNames != null && packageAsset.ComponentNames.Length > 0)
+                    FairyGuiPackageAsset packageAsset = AssetDatabase.LoadAssetAtPath<FairyGuiPackageAsset>(FairyGuiEditor.FairyGuiPackagesPath + m_FairyGuiPackageAssetNames[m_FairyGuiPackageAssetIndex]);
+                    m_FairyGuiPackageAssetSerializedProperty.objectReferenceValue = packageAsset;
+                    if (packageAsset != null)
                     {
-                        selectedIndex = EditorGUILayout.Popup("Component Name", m_FairyGuiComponentNameIndex, packageAsset.ComponentNames);
-                        if (selectedIndex != m_FairyGuiComponentNameIndex)
+                        if (packageAsset.ComponentNames != null && packageAsset.ComponentNames.Length > 0)
                         {
-                            m_FairyGuiComponentNameIndex = selectedIndex;
-                            m_ComponentName.stringValue = packageAsset.ComponentNames[m_FairyGuiComponentNameIndex];
+                            m_FairyGuiComponentNameIndex = EditorGUILayout.Popup("Component Name", m_FairyGuiComponentNameIndex, packageAsset.ComponentNames);
+                            if (m_FairyGuiComponentNameIndex >= 0)
+                            {
+                                m_ComponentNameSerializedProperty.stringValue = packageAsset.ComponentNames[m_FairyGuiComponentNameIndex];
+                            }
+                        }
+                        else
+                        {
+                            EditorGUILayout.LabelField("Component Name not exist! Please Check!");
                         }
                     }
-                    else
-                    {
-                        EditorGUILayout.LabelField("Component Name not exist! Please Check!");
-                    }
                 }
-                
                 //EditorGUILayout.PropertyField(m_LuaClassName);
             }
             EditorGUI.EndDisabledGroup();
@@ -57,25 +57,32 @@ namespace Game.Editor
             Repaint();
         }
 
-        private void RefreshFairyGuiPackageAsset()
+        void OnEnable()
         {
+            m_FairyGuiPackageAssetSerializedProperty = serializedObject.FindProperty("m_FairyGuiPackageAsset");
+            m_ComponentNameSerializedProperty = serializedObject.FindProperty("m_ComponentName");
             m_FairyGuiPackageAssetNames = FairyGuiEditor.GetFairyGuiPackages();
-            if (m_FairyGuiPackageAsset.objectReferenceValue == null)
+            FairyGuiPackageAsset packageAsset = m_FairyGuiPackageAssetSerializedProperty.objectReferenceValue as FairyGuiPackageAsset;
+            if (packageAsset == null || !m_FairyGuiPackageAssetNames.Contains($"{packageAsset.PackageName}.asset"))
             {
                 m_FairyGuiPackageAssetIndex = -1;
+                m_FairyGuiPackageAssetSerializedProperty.objectReferenceValue = null;
             }
             else
             {
-                m_FairyGuiPackageAssetIndex = m_FairyGuiPackageAssetNames.IndexOf(m_FairyGuiPackageAsset.objectReferenceValue.name + ".asset");
+                m_FairyGuiPackageAssetIndex = m_FairyGuiPackageAssetNames.IndexOf($"{packageAsset.PackageName}.asset");
+                string componentName = m_ComponentNameSerializedProperty.stringValue;
+                if (string.IsNullOrEmpty(componentName) || !packageAsset.ComponentNames.Contains(componentName))
+                {
+                    m_FairyGuiComponentNameIndex = -1;
+                    m_ComponentNameSerializedProperty.stringValue = string.Empty;
+                }
+                else
+                {
+                    m_FairyGuiComponentNameIndex = packageAsset.ComponentNames.ToList().IndexOf(componentName);
+                }
             }
-        }
-
-        void OnEnable()
-        {
-            m_FairyGuiPackageAsset = serializedObject.FindProperty("m_FairyGuiPackageAsset");
-            m_ComponentName = serializedObject.FindProperty("m_ComponentName");
             //m_LuaClassName = serializedObject.FindProperty("m_LuaClassName");
-            RefreshFairyGuiPackageAsset();
         }
     }
 }

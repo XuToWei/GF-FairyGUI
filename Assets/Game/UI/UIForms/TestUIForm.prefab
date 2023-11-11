@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73ca951e1487054f92a70f867e560b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FairyGuiPackageAsset: {fileID: 11400000, guid: 00b0e772dad5da94b903a08866013d2c, type: 2}
-  m_ComponentName: Demo_Button
+  m_FairyGuiPackageAsset: {fileID: 11400000, guid: 87366a8b924db914aa40a8172bf24207, type: 2}
+  m_ComponentName: TestWin
