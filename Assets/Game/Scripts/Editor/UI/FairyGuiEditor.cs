@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using FairyGUI;
@@ -74,7 +75,6 @@ namespace Game.Editor
 
         private static void DeletePackageAsset(string[] deletedAssets)
         {
-
             for (int i = 0; i < deletedAssets.Length; i++)
             {
                 string importName = deletedAssets[i];
@@ -106,17 +106,17 @@ namespace Game.Editor
                     continue;
                 }
 
-                int charIndex = importName.IndexOf("_");
+                int charIndex = importName.IndexOf("_", StringComparison.Ordinal);
                 string prePartName = importName.Substring(0, charIndex);
 
-                int index = prePartName.LastIndexOf("/");
+                int index = prePartName.LastIndexOf("/", StringComparison.Ordinal);
                 string name = prePartName.Substring(index + 1);
                 string posfixName = importName.Substring(charIndex + 1);
                 if (importName.EndsWith(".bytes") && posfixName.StartsWith("fui"))
                 {
                     m_FuiDescAssetDict[name] = AssetDatabase.LoadAssetAtPath<TextAsset>(importName);
                 }
-                else if (importName.EndsWith(".png") && posfixName.StartsWith("atlas") || importName.EndsWith(".wav"))
+                else
                 {
                     if (!m_FuiAssetsDict.ContainsKey(name))
                     {
@@ -172,15 +172,38 @@ namespace Game.Editor
                         componentNames.Add(pi.name);
                     }
                 }
-                
-                if (m_FuiAssetsDict.ContainsKey(name))
+                if (m_FuiAssetsDict.TryGetValue(name, out List<Object> aObjects))
                 {
-                    asset.Set(name, componentNames.ToArray(), m_FuiDescAssetDict[name], m_FuiAssetsDict[name].ToArray());
+                    asset.Set(name, componentNames.ToArray(), m_FuiDescAssetDict[name], aObjects.ToArray());
                 }
                 else
                 {
-                    asset.Set(name, componentNames.ToArray(), m_FuiDescAssetDict[name], null);
+                    asset.Set(name, componentNames.ToArray(), m_FuiDescAssetDict[name]);
                 }
+                
+                UIPackage.RemovePackage(pkg.name);
+                EditorUtility.SetDirty(asset);
+            }
+            
+            foreach (KeyValuePair<string, List<Object>> kv in m_FuiAssetsDict)
+            {
+                string name = kv.Key;
+                if(m_FuiDescAssetDict.ContainsKey(name))
+                    continue;
+                FairyGuiPackageAsset asset;
+                string packageAssetPath = $"{FairyGuiPackagesPath}{name}.asset";
+                if (!File.Exists(packageAssetPath))
+                {
+                    asset = ScriptableObject.CreateInstance<FairyGuiPackageAsset>();
+                    asset.name = name;
+                    AssetDatabase.CreateAsset(asset, packageAssetPath);
+                }
+                else
+                {
+                    asset = AssetDatabase.LoadAssetAtPath<FairyGuiPackageAsset>(packageAssetPath);
+                }
+                UIPackage pkg = UIPackage.AddPackage($"{FairyGuiAssetsPath}{name}");
+                asset.Set(kv.Value.ToArray());
                 
                 UIPackage.RemovePackage(pkg.name);
                 EditorUtility.SetDirty(asset);

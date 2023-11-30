@@ -30,7 +30,18 @@ namespace Game
             m_DescAsset = textAsset;
             m_AssetObjects = assetObjects;
         }
-        
+
+        public void Set(string packageName,string[] componentNames, TextAsset textAsset)
+        {
+            m_PackageName = packageName;
+            m_ComponentNames = componentNames;
+            m_DescAsset = textAsset;
+        }
+
+        public void Set(Object[] assetObjects)
+        {
+            m_AssetObjects = assetObjects;
+        }
 
         public void Init()
         {
