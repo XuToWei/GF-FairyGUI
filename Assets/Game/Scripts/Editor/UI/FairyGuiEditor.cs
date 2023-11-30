@@ -174,7 +174,7 @@ namespace Game.Editor
                 }
                 if (m_FuiAssetsDict.TryGetValue(name, out List<Object> aObjects))
                 {
-                    asset.Set(name, componentNames.ToArray(), m_FuiDescAssetDict[name], aObjects.ToArray());
+                    asset.Set(name, componentNames.ToArray(), m_FuiDescAssetDict[name], GetAssetObjects(asset, aObjects));
                 }
                 else
                 {
@@ -203,13 +203,33 @@ namespace Game.Editor
                     asset = AssetDatabase.LoadAssetAtPath<FairyGuiPackageAsset>(packageAssetPath);
                 }
                 UIPackage pkg = UIPackage.AddPackage($"{FairyGuiAssetsPath}{name}");
-                asset.Set(kv.Value.ToArray());
+                asset.Set(GetAssetObjects(asset, kv.Value));
                 
                 UIPackage.RemovePackage(pkg.name);
                 EditorUtility.SetDirty(asset);
             }
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        private static Object[] GetAssetObjects(FairyGuiPackageAsset asset, List<Object> addAssetObjects)
+        {
+            List<Object> objects = new List<Object>();
+            if (asset.AssetObjects != null)
+            {
+                foreach (Object obj in asset.AssetObjects)
+                {
+                    if (obj != null)
+                    {
+                        objects.Add(obj);
+                    }
+                }
+            }
+            if (addAssetObjects != null)
+            {
+                objects.AddRange(addAssetObjects);
+            }
+            return objects.ToArray();
         }
 
         private static bool CheckDir(string[] dirs)

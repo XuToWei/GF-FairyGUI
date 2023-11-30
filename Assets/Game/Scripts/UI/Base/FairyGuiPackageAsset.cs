@@ -17,6 +17,8 @@ namespace Game
 
         public string PackageName => m_PackageName;
         public string[] ComponentNames => m_ComponentNames;
+        public TextAsset DescAsset => m_DescAsset;
+        public Object[] AssetObjects => m_AssetObjects;
 
         public GObject CreateObject(string componentName)
         {
